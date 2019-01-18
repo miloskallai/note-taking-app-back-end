@@ -91,6 +91,17 @@ app.put('/notes/:id', (req, res) => {
   );
 });
 
+app.delete('/notes/:id', (req, res) => {
+  const _id = req.params.id;
+  Note.remove({ _id }, err => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Post removed from db');
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`server is up, listening on port ${PORT}`);
 });
