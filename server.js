@@ -76,11 +76,9 @@ app.put('/notes/:id', (req, res) => {
         user,
         note_title,
         note_text,
-        date: new Date(),
         is_shared
       }
     },
-    { new: true },
     (err, note) => {
       if (err) {
         console.log(err);
