@@ -34,6 +34,17 @@ app.get('/notes', (req, res) => {
   });
 });
 
+app.get('/notes/:id', (req, res) => {
+  const _id = req.params.id;
+  Note.findById({ _id }, (err, note) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(note);
+    }
+  });
+});
+
 app.post('/notes', (req, res) => {
   const { user, note_title, note_text, is_shared } = req.body;
   Note.create(
