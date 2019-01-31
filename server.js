@@ -4,15 +4,21 @@ const PORT = 8080;
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const db = require('./.config/keys').mongoURI;
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-mongoose.connect(
-  'mongodb://localhost/notes_api',
-  { useNewUrlParser: true }
-);
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => {
+    console.log('Mongo DB connected!');
+  })
+  .catch(err => {
+    console.log(err);
+    console.log('Could not connect to Mongo DB');
+  });
 
 const noteSchema = new mongoose.Schema({
   user: String,
