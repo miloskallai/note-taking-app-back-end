@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./.config/keys').mongoURI;
+const { Note } = require('./models/note');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -19,16 +20,6 @@ mongoose
     console.log(err);
     console.log('Could not connect to Mongo DB');
   });
-
-const noteSchema = new mongoose.Schema({
-  user: String,
-  note_title: String,
-  note_text: String,
-  date: Date,
-  is_shared: Boolean
-});
-
-const Note = mongoose.model('Note', noteSchema);
 
 app.get('/notes', (req, res) => {
   Note.find({}, (err, notes) => {
