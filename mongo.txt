@@ -1,2 +1,0 @@
-~/mongodb/bin/mongod
-PATH=$PATH:///Users/miloskallai/mongodb/bin
